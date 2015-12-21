@@ -1,4 +1,4 @@
-(ns juxt.dali
+(ns juxt.radar.dali
   (:require [dali.io :as io]))
 
 (defn radar []
