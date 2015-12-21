@@ -25,15 +25,20 @@
       (svg/line [0 (/ height 2)] [width (/ height 2)])
       (svg/line [(/ width 2) 0] [(/ width 2) height])
 
-      ((viz/svg-triangle-down 30) [[100 100]]))
+      ((viz/svg-triangle-down 30) [[100 100]])
+      (svg/group
+       {:fill "white"
+        :font-family "Arial, sans-serif"
+        :font-color "white"
+         :stroke "white"
+        :font-size 14}
+       (svg/text [92 86] "92")))
 
      ;; Radiants
      (svg/group
       {:fill "none" :stroke "indigo" :stroke-width 1}
       (for [{:keys [radius]} (:arcs data)]
-        (with-meta
-          (c/circle (/ width 2) (/ width 2) radius)
-          {:label "ASdc"})))
+        (c/circle (/ width 2) (/ width 2) radius)))
 
      ;; Labels
      (svg/group
