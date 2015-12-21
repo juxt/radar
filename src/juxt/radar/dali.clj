@@ -1,17 +1,7 @@
 (ns juxt.radar.dali
   (:require [dali.io :as io]
-            [dali.layout.stack]))
-
-(def radar-cfg {:arcs [{:radius 100, :label "Adopt"}
-                       {:radius 200, :label "Trial"}
-                       {:radius 300, :label "Assess"}
-                       {:radius 400, :label "Hold"}]})
-
-(defn radar-width [radar]
-  (* 2 (apply max (map :radius (-> radar :arcs)))))
-
-(defn radar-height [radar]
-  (radar-width radar))
+            [dali.layout.stack]
+            [juxt.radar.radar :refer :all]))
 
 (defn radar [data]
   (let [width (radar-width data)

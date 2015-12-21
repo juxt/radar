@@ -1,7 +1,8 @@
 (set-env!
  :source-paths #{"sass" "src" "resources"}
  :dependencies '[[dali "0.7.0-SNAPSHOT"]
-                 [org.clojure/clojure "1.7.0"]])
+                 [org.clojure/clojure "1.7.0"]
+                 [thi.ng/geom "0.0.908"]])
 
 #_(deftask dev
   "Simple alias to run application in development mode"
