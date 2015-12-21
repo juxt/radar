@@ -4,7 +4,7 @@
 (defn radar []
   [:page
    [:rect
-    {:width 100 :height 100 :x 0 :y 0 :fill :white}
+    {:width 500 :height 500 :x 0 :y 0 :fill :none :stroke {:paint :black :width 2}}
     [:circle
      {:stroke :indigo :stroke-width 4 :fill :darkorange}
      [30 30] 20]]])
