@@ -5,6 +5,7 @@
             [thi.ng.geom.svg.adapter :as adapt]
             [thi.ng.color.core :as col]
             [thi.ng.geom.viz.core :as viz]
+            [thi.ng.geom.triangle :as tri]
             [juxt.radar.radar :as radar]))
 
 (defn labeled-dot
@@ -23,7 +24,8 @@
       {:stroke "indigo" :stroke-width 1}
       (svg/line [0 (/ height 2)] [width (/ height 2)])
       (svg/line [(/ width 2) 0] [(/ width 2) height])
-      )
+
+      ((viz/svg-triangle-down 30) [[100 100]]))
 
      ;; Radiants
      (svg/group
@@ -39,9 +41,7 @@
        :font-family "Arial, sans-serif"
        :font-size 10}
       (for [{:keys [radius label]} (:arcs data)]
-        (svg/text [403 (+ 15 (- 400 radius))] label)
-;;        (labeled-dot (g/point-at 400 (+ 400 radius)) "asidjaisujd")
-        )))))
+        (svg/text [403 (+ 15 (- 400 radius))] label))))))
 
 (defn make []
   (->> radar/radar-cfg
