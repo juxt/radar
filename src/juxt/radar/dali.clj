@@ -1,10 +1,11 @@
 (ns juxt.radar.dali
-  (:require [dali.io :as io]))
+  (:require [dali.io :as io]
+            [dali.layout.stack]))
 
-(def radar-cfg {:arcs [{:radius 100, :name "Adopt"}
-                       {:radius 200, :name "Trial"}
-                       {:radius 300, :name "Assess"}
-                       {:radius 400, :name "Hold"}]})
+(def radar-cfg {:arcs [{:radius 100, :label "Adopt"}
+                       {:radius 200, :label "Trial"}
+                       {:radius 300, :label "Assess"}
+                       {:radius 400, :label "Hold"}]})
 
 (defn radar-width [radar]
   (* 2 (apply max (map :radius (-> radar :arcs)))))
@@ -18,10 +19,14 @@
     [:page {:stroke {:paint :black :width 2} }
      [:line {:stroke [10 5]} [0 (/ height 2)] [width (/ height 2)]] ;; Horizonal line
      [:line {:stroke [10 5]} [(/ width 2) 0] [(/ width 2) height]] ;; Vertical line
-     (for [{:keys [radius]} (:arcs data)]
-       [:circle
-        {:stroke :indigo :stroke-width 1 :fill :none}
-        [(/ width 2) (/ width 2)] radius])]))
+     (for [{:keys [radius label]} (:arcs data)]
+       [:dali/stack {:direction :up :position [(/ width 2) (/ width 2)];; :anchor :left
+                     }
+        [:circle
+         {:stroke :indigo :stroke-width 1 :fill :none}
+         [(/ width 2) (/ width 2)] radius]
+        #_[:text
+         {:font-family "Arial" :font-size 20} label]])]))
 
 (defn foo []
   (io/render-svg (radar radar-cfg) "foo.svg"))
