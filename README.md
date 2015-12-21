@@ -1,3 +1,5 @@
+(In active development, nothing much here right now)
+
 # Intro
 
 Technology radars can be useful. I respect the effort ThoughtWorks has gone to in producing theirs, and I believe that other companies should build their own too, so that we can all make better informed decisions on what tech to use.
