@@ -2,14 +2,14 @@
   (:require [dali.io :as io]))
 
 (defn radar []
-  [{:filename "JUXT Clojure Radar"
-    :document
-    [:page {:width 60 :height 60}
-                               #_[:cicle
-      {:stroke :indigo :stroke-width 4 :fill :darkorange}
-      [30 30] 20]]}])
+  [:page
+   [:rect
+    {:width 100 :height 100 :x 0 :y 0 :fill :white}
+    [:circle
+     {:stroke :indigo :stroke-width 4 :fill :darkorange}
+     [30 30] 20]]])
 
 (defn foo []
-  (io/render-svg (radar) "foo.svn"))
+  (io/render-svg (radar) "foo.svg"))
 
 (foo)
