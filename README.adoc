@@ -1,0 +1,35 @@
+= radar
+
+A tool to build an interactive Tech Radar, for easy embedding at juxt.pro.
+
+== Developing a new radar
+
+Pre-requisites:
+
+1. Install npm (e.g. `yay -S npm`)
+2. Download npm dependencies for this project:
+
+        npm install
+
+Run the application:
+
+1. Launch shadow-cljs, watching for changes
+
+        npx shadow-cljs watch frontend
+
+2. Wait for
+
+        [:frontend] Build completed. (...)
+
+3. Navigate to http://localhost:8080
+4. Make adjustments to radar.cljs, radar_data.cljc and libraries.cljc
+
+== Releasing
+
+1. Compile the Javascript for release
+
+        npx shadow-cljs release frontend
+
+2. Take and deploy the `public/js/radar.js`
+3. Embed the radar by adding `<div id="radar"/>` and `<script src="/js/radar.js"></script>` to an html page
+4. Add anchors (with ids) to your page, to allow jumping from the diagram to the text

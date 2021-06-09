@@ -1,0 +1,13 @@
+{:source-paths
+ ["src/main"]
+
+ :dev-http
+ {8080 "public"}
+
+ :dependencies
+ [[reagent "1.1.0" :exclusions [cljsjs/react cljsjs/react-dom]]]
+
+ :builds
+ {:frontend
+  {:target :browser
+   :modules {:radar {:init-fn juxt.web.radar/init}}}}}
