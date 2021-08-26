@@ -25,7 +25,7 @@
    :component {:label "Component", :href "https://github.com/stuartsierra/component"},
    :core-async {:label "core.async", :href "https://github.com/clojure/core.async"},
    :core-typed {:label "core.typed", :href "https://github.com/clojure/core.typed"},
-   :crux {:label "Crux", :href "https://github.com/juxt/crux/"},
+   :xtdb {:label "XTDB", :href "https://github.com/xtdb/xtdb/"},
    :cursive {:label "Cursive", :href "https://cursive-ide.com/"},
    :cypress {:label "Cypress", :href "https://www.cypress.io/"},
    :datascript {:label "Datascript", :href "https://github.com/tonsky/datascript"},

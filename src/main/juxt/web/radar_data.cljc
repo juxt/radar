@@ -94,7 +94,7 @@
 
     ;; Platforms/Frameworks
     {:id :integrant, :r 60, :t 210}
-    {:id :crux, :r 75, :t 230}
+    {:id :xtdb, :r 75, :t 230}
     {:id :ring, :r 110, :t 260}
 
     {:id :site, :r 160, :t 210}
