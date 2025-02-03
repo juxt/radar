@@ -141,7 +141,40 @@
     {:id :apex, :r 250, :t 330}
 
     {:id :schema, :r 310, :t 320}
-    {:id :timbre, :r 300, :t 340}]})
+    {:id :timbre, :r 300, :t 340}]
+
+   :2025-ai
+   [{:id :classical-ml :r 100 :t 0}
+    {:id :pytorch :r 100 :t 90}
+    {:id :notebooks :r 100 :t 180}
+    {:id :wandb :r 100 :t 270}]})
+
+
+(def base-data-quadrants-by-year
+  {:2016 {1 {:fill  "rgb(58,143,163)"
+             :label "ClojureScript"}
+          2 {:fill  "rgb(234,125,40)"
+             :label "Infrastructure"}
+          3 {:fill  "rgb(107,151,89)"
+             :label "Tools"}
+          4 {:fill  "rgb(159,30,69)"
+             :label "Libraries"}}
+   :2021 {1 {:fill  "rgb(58,143,163)"
+             :label "ClojureScript"}
+          2 {:fill  "rgb(234,125,40)"
+             :label "Infrastructure"}
+          3 {:fill  "rgb(107,151,89)"
+             :label "Tools"}
+          4 {:fill  "rgb(159,30,69)"
+             :label "Libraries"}}
+   :2025-ai {1 {:fill  "rgb(58,143,163)"
+                :label "Techniques"}
+             2 {:fill  "rgb(234,125,40)"
+                :label "Platforms"}
+             3 {:fill  "rgb(107,151,89)"
+                :label "Tools"}
+             4 {:fill  "rgb(159,30,69)"
+                :label "Languages & Frameworks"}}})
 
 
 (defn- add-previous
@@ -166,7 +199,7 @@
                                     :label "ClojureScript"}
                                  2 {:fill  "rgb(234,125,40)"
                                     :label "Infrastructure"}
-                                 3 {:fill  "rgb(107,151,89"
+                                 3 {:fill  "rgb(107,151,89)"
                                     :label "Tools"}
                                  4 {:fill  "rgb(159,30,69)"
                                     :label "Libraries"}}}]
@@ -200,8 +233,12 @@
        (map #(assoc % :radiant (radiant-for radiants (:r %))))))
 
 (def radars
-  (zipmap (keys points-by-year)
-          (map (fn [points]
-                 (-> radar-base-data
-                     (assoc :points (enrich-points points (:radiants radar-base-data)))))
-               (vals points-by-year))))
+  (let [f (fn [radar-key]
+            (let [radar-base-data radar-base-data
+                  points (get points-by-year radar-key)]
+              (-> radar-base-data
+                  (assoc :points (enrich-points points (:radiants radar-base-data)))
+                  (assoc :quadrants (get base-data-quadrants-by-year radar-key)))))]
+    (reduce (fn [coll radar-key]
+              (assoc coll radar-key (f radar-key)))
+            {} (keys points-by-year))))

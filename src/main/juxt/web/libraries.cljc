@@ -102,4 +102,8 @@
    :tripod {:label "Tripod", :href "https://github.com/frankiesardo/tripod"},
    :urania {:label "Urania", :href "https://github.com/funcool/urania"},
    :yada {:label "yada", :href "https://github.com/juxt/yada"},
-   :yesql {:label "Yesql", :href "https://github.com/krisajenkins/yesql"}})
+   :yesql {:label "Yesql", :href "https://github.com/krisajenkins/yesql"}
+   :notebooks {:label "Notebooks" :href "https://google.com"}
+   :pytorch {:label "Pytorch" :href "https://google.com"}
+   :wandb {:label "Weights & Biases" :href "https://google.com"}
+   :classical-ml {:label "Classical ML" :href "https://google.com"}})

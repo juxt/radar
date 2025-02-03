@@ -159,7 +159,7 @@
           (legend radar-data)]]))))
 
 (defn ^:dev/after-load start []
-  (rdom/render [radar-component :2021]
+  (rdom/render [radar-component :2025-ai]
                (. js/document (getElementById "radar"))))
 
 (defn init []
