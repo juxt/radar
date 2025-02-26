@@ -144,10 +144,17 @@
     {:id :timbre, :r 300, :t 340}]
 
    :2025-ai
-   [{:id :classical-ml :r 100 :t 0}
-    {:id :pytorch :r 100 :t 90}
-    {:id :notebooks :r 100 :t 180}
-    {:id :wandb :r 100 :t 270}]})
+   [;; Tools
+    {:id :classical-ml :r 100 :t 45}
+
+    ;; Techniques
+    {:id :pytorch :r 100 :t 135}
+
+    ;; Platforms
+    {:id :notebooks :r 100 :t 225}
+
+    ;; Languages & Frameworks
+    {:id :wandb :r 100 :t 315}]})
 
 
 (def base-data-quadrants-by-year
@@ -232,13 +239,13 @@
        (map-indexed #(assoc %2 :index (inc %1)))
        (map #(assoc % :radiant (radiant-for radiants (:r %))))))
 
+(defn radar-data [radar-key]
+  (let [radar-base-data radar-base-data
+        points (get points-by-year radar-key)]
+    (-> radar-base-data
+        (assoc :points (enrich-points points (:radiants radar-base-data)))
+        (assoc :quadrants (get base-data-quadrants-by-year radar-key)))))
+
 (def radars
-  (let [f (fn [radar-key]
-            (let [radar-base-data radar-base-data
-                  points (get points-by-year radar-key)]
-              (-> radar-base-data
-                  (assoc :points (enrich-points points (:radiants radar-base-data)))
-                  (assoc :quadrants (get base-data-quadrants-by-year radar-key)))))]
-    (reduce (fn [coll radar-key]
-              (assoc coll radar-key (f radar-key)))
-            {} (keys points-by-year))))
+  (let [radar-keys (keys points-by-year)]
+    (zipmap radar-keys (map radar-data radar-keys))))
